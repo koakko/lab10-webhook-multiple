@@ -14,7 +14,7 @@ pipeline {
                     $class: 'GitSCM',
                     branches: [[name: '*/${BRANCH_NAME}']],
                     userRemoteConfigs: [[
-                        url: 'git@github.com:koakko/lab08-jk-webhook.git',
+                        url: 'git@github.com:koakko/lab10-webhook-multiple.git',
                         credentialsId: 'github-ssh'
                     ]]
                 ])
@@ -106,7 +106,7 @@ pipeline {
                 '''
             }
         }
-        stage('Checkout dev branch')
+        stage('CheckoutTdev branch') {
         when {
             branch 'dev'
         }
@@ -130,6 +130,7 @@ pipeline {
                     docker run -d -p 80:80 --name cfend koak/lab08-webhook:frontend
                 '''
             }
+        }
         }
     }
     post {
