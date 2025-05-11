@@ -106,6 +106,18 @@ pipeline {
                 '''
             }
         }
+	stage('clone resource form github') {
+	when {
+		branch 'dev'
+	}
+            agent {
+                label 'frontend-agent'
+            }
+            steps {
+                    deleteDir()
+                    git url: 'https://github.com/koakko/lab10-webhook-multiple.git', branch: 'dev'
+            }
+        }
 	stage('deploy frontend in dev') {
         when {
             branch 'dev'
@@ -114,7 +126,6 @@ pipeline {
             label 'frontend-agent'
         }
         steps {
-            git url: 'https://github.com/koakko/lab10-webhook-multiple.git', branch: 'dev'
             dir('frontend') {
                 sh '''
                     if [ "$(docker ps -a -q -f name=cfend)" ]; then
