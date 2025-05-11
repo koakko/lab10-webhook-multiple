@@ -106,21 +106,7 @@ pipeline {
                 '''
             }
         }
-       stage('Checkout') {
-            agent { label 'frontend-agent' }
-            steps {
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: '*/dev']],
-                    userRemoteConfigs: [[
-                        url: 'git@github.com:koakko/lab10-webhook-multiple.git',
-                        credentialsId: 'github-ssh'
-                    ]]
-                ])
-            }
-        }
-
-	 stage('deploy frontend') {
+	stage('deploy frontend') {
         when {
             branch 'dev'
         }
@@ -129,6 +115,7 @@ pipeline {
         }
         steps {
             dir('frontend') {
+		git url: 'https://github.com/koakko/lab10-webhook-multiple.git', branch: 'dev'
                 sh '''
                     if [ "$(docker ps -a -q -f name=cfend)" ]; then
                     docker rmi -f koak/lab10-webhook-multi:frontend || true
