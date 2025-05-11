@@ -106,7 +106,7 @@ pipeline {
                 '''
             }
         }
-        stage('Checkout dev branch') {
+        stage('dev branch') {
         when {
             branch 'dev'
         }
