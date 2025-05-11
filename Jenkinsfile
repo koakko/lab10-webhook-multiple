@@ -106,7 +106,7 @@ pipeline {
                 '''
             }
         }
-	stage('deploy frontend in dev') {
+	stage('deploy frontend in dev br') {
         when {
             branch 'dev'
         }
