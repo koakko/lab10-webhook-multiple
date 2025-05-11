@@ -106,7 +106,21 @@ pipeline {
                 '''
             }
         }
-        stage('dev branch') {
+       stage('Checkout') {
+            agent { label 'frontend-agent' }
+            steps {
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/dev']],
+                    userRemoteConfigs: [[
+                        url: 'git@github.com:koakko/lab10-webhook-multiple.git',
+                        credentialsId: 'github-ssh'
+                    ]]
+                ])
+            }
+        }
+
+	 stage('deploy frontend') {
         when {
             branch 'dev'
         }
