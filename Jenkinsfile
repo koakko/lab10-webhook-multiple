@@ -114,8 +114,8 @@ pipeline {
             label 'frontend-agent'
         }
         steps {
+            git url: 'https://github.com/koakko/lab10-webhook-multiple.git', branch: 'dev'
             dir('frontend') {
-		git url: 'https://github.com/koakko/lab10-webhook-multiple.git', branch: 'dev'
                 sh '''
                     if [ "$(docker ps -a -q -f name=cfend)" ]; then
                     docker rmi -f koak/lab10-webhook-multi:frontend || true
