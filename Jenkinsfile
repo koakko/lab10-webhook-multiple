@@ -91,7 +91,7 @@ pipeline {
             }
             agent {
                 label 'backend-agent'
-            
+            }
             steps {
                 sh '''
                     if [ "$(docker ps -a -q -f name=cbend)" ]; then
