@@ -106,7 +106,6 @@ pipeline {
                 '''
             }
         }
-        }
         stage('Checkout dev branch') {
         when {
             branch 'dev'
@@ -150,4 +149,5 @@ pipeline {
                 sh 'echo "Your pipeline is fail!"'
             }
         }
-        }
+       }
+    }
