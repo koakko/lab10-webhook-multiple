@@ -106,7 +106,7 @@ pipeline {
                 '''
             }
         }
-        stage('Checkout dev branch')
+        stage('Checkout dev branch') {
         when {
             branch 'dev'
         }
@@ -130,6 +130,7 @@ pipeline {
                     docker run -d -p 80:80 --name cfend koak/lab08-webhook:frontend
                 '''
             }
+        }
         }
     }
     post {
